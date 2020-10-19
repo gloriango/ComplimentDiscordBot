@@ -4,7 +4,13 @@ require('dotenv').config();
 
 var complimenter = require("complimenter");
 
-const activationWords = ["compliment", "sad", "Compliment", "Sad"];
+const activationWords = 
+["compliment", 
+    "sad", 
+    "Compliment", 
+    "Sad",
+    ":("
+];
 
 
 const Discord = require('discord.js');
