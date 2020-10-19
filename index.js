@@ -1,6 +1,10 @@
 require('dotenv').config();
+ 
+// import activationWords from "./activationWords.js"
 
 var complimenter = require("complimenter");
+
+const activationWords = ["compliment", "sad", "Compliment", "Sad"];
 
 
 const Discord = require('discord.js');
@@ -13,9 +17,16 @@ botClient.on('ready', () => {
 });
  
 botClient.on("message", msg => {
-    if(msg.content == "compliment me?"){
+    // if(msg.content == "Compliment me?"){
+    //     msg.reply(complimenter());
+    // };
+
+    if (activationWords.some(word => msg.content.includes(word))){
         msg.reply(complimenter());
-    };
+    }
+
+
+
 });
 
 botClient.login(token)
