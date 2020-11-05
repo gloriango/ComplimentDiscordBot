@@ -16,20 +16,25 @@ botClient.on('ready', () => {
 
 const activationWords = 
 ["compliment", 
-    "sad", 
-    "Compliment", 
-    "Sad",
-    ":("
+   "sad", 
+   ":("
 ]; 
 
-botClient.on("message", msg => {
-    // if(msg.content == "Compliment me?"){
-    //     msg.reply(complimenter());
-    // };
 
-    if (activationWords.some(word => msg.content.includes(word))){
-        msg.reply(complimenter());
+botClient.on("message", msg => {
+    compliment = complimenter()
+
+    // compliment the person who was typing since theyre sad/want a compliment
+    if (activationWords.some(word => msg.content.toLowerCase().includes(word))){
+        msg.reply(compliment);
     }
+
+    // x compliments y 
+    // if (){
+    //     otherPerson = "me"
+    //     msg.reply("wants to tell " + otherPerson + "'" + compliment + "'");
+    // }
+
 });
 
 
