@@ -22,18 +22,25 @@ const activationWords =
 
 
 botClient.on("message", msg => {
-    compliment = complimenter()
-
-    // compliment the person who was typing since theyre sad/want a compliment
-    if (activationWords.some(word => msg.content.toLowerCase().includes(word))){
-        msg.reply(compliment);
+    if (msg.author.bot){
+        return;
     }
 
+    compliment = complimenter()
+
     // x compliments y 
-    // if (){
-    //     otherPerson = "me"
-    //     msg.reply("wants to tell " + otherPerson + "'" + compliment + "'");
-    // }
+    // check if an user is mentionned
+    if (msg.mentions.users.first()) { 
+        if (msg.content.includes("!compliment")){
+        otherPerson = msg.mentions.users.first().id
+        msg.reply("wants to tell <@"+otherPerson + "> '" + compliment + "'");
+        } 
+    }
+    
+    // compliment the person who was typing since theyre sad/want a compliment
+    else if (activationWords.some(word => msg.content.toLowerCase().includes(word))){
+        msg.reply(compliment);
+    }
 
 });
 
