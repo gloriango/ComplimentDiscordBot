@@ -10,7 +10,7 @@ const Discord = require('discord.js');
 const botClient = new Discord.Client();
 
 function getMessage(){
-
+    compliment = complimenter()
     botClient.on('ready', () => {
         console.log("This bot is now online!");
     });
@@ -26,7 +26,7 @@ function getMessage(){
             return;
         }
 
-        compliment = complimenter()
+        
         if (activationWords.some(word => msg.content.toLowerCase().includes(word))){
             // x complements y 
             if (msg.mentions.users.first()) { 
