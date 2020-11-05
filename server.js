@@ -4,12 +4,13 @@ const port = 3000
 
 require('dotenv').config();
 
+const token = process.env.TOKEN
+var complimenter = require("complimenter");
+const Discord = require('discord.js');
+const botClient = new Discord.Client();
+
 function getMessage(){
 
-    var complimenter = require("complimenter");
-    const Discord = require('discord.js');
-    const botClient = new Discord.Client();
-    const token = process.env.TOKEN
     botClient.on('ready', () => {
         console.log("This bot is now online!");
     });
@@ -37,7 +38,6 @@ function getMessage(){
                 msg.reply(compliment);
             }
         }
-        console.log("GAVE A COMPLIMENT")
         // maybe do some machine learning here -> if message is a SAD message compliment them
         // if its a happy/neutral message leave it alone - look for API? or make myself?
 
