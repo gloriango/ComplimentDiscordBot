@@ -15,9 +15,9 @@ botClient.on('ready', () => {
 });
 
 const activationWords = 
-["compliment", 
-   "sad", 
-   ":("
+["!compliment",
+"!complimentMe"
+
 ]; 
 
 
@@ -27,20 +27,22 @@ botClient.on("message", msg => {
     }
 
     compliment = complimenter()
+    if (activationWords.some(word => msg.content.toLowerCase().includes(word))){
+        // x complements y 
+        if (msg.mentions.users.first()) { 
+            otherPerson = msg.mentions.users.first().id
+            msg.reply("wants to tell <@"+otherPerson + "> '" + compliment + "'");
+            } 
+        // compliment the person who wanted a compliment
+        else {
+            msg.reply(compliment);
+        }
+    }
 
-    // x compliments y 
-    // check if an user is mentionned
-    if (msg.mentions.users.first()) { 
-        if (msg.content.includes("!compliment")){
-        otherPerson = msg.mentions.users.first().id
-        msg.reply("wants to tell <@"+otherPerson + "> '" + compliment + "'");
-        } 
-    }
-    
-    // compliment the person who was typing since theyre sad/want a compliment
-    else if (activationWords.some(word => msg.content.toLowerCase().includes(word))){
-        msg.reply(compliment);
-    }
+    // maybe do some machine learning here -> if message is a SAD message compliment them
+    // if its a happy/neutral message leave it alone - look for API? or make myself?
+
+
 
 });
 
