@@ -2,6 +2,8 @@ require('dotenv').config();
 
 var complimenter = require("complimenter");
 
+const vader = require('vader-sentiment');
+
 const Discord = require('discord.js');
 
 const botClient = new Discord.Client();
@@ -13,9 +15,7 @@ botClient.on('ready', () => {
 });
 
 const activationWords = 
-["!compliment",
-"!complimentMe"
-
+["!compliment"
 ]; 
 
 botClient.on("message", msg => {
@@ -34,14 +34,19 @@ botClient.on("message", msg => {
         else {
             msg.reply(compliment);
         }
-    }
+        
+    // if message is a negative message compliment them
+    // if its a happy/neutral message leave it alone
+    } else {
 
-    // maybe do some machine learning here -> if message is a SAD message compliment them
-    // if its a happy/neutral message leave it alone - look for API? or make myself?
+        intensity = vader.SentimentIntensityAnalyzer.polarity_scores(msg.content);
+        // intensity is form {neg: 0.0, neu: 0.299, pos: 0.701, compound: 0.8545}
+        // if the message is something negative, slap a compliment to them without consent 
+        if (intensity.compound <= -0.05){
+            msg.reply("Don't be upset! " + compliment)
+        }
+    }
 
 });
 
 botClient.login(token)
-
-
-
