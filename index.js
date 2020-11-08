@@ -25,7 +25,8 @@ botClient.on("message", msg => {
 
     // if (activationWords.some(word => msg.content.toLowerCase().includes(word))){
     if (msg.content.startsWith("!help")){
-        msg.channel.send("To generate an insult for yourself: !insult \n" +
+        msg.channel.send("To get help: !help \n" +
+                         "To generate an insult for yourself: !insult \n" +
                          "To insult someone else: !insult @personsName \n" +
                          "To generate a compliment for yourself: !compliment \n" +
                          "To compliment someone else: !compliment @personsName \n" + 
