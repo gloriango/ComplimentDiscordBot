@@ -24,7 +24,7 @@ botClient.on("message", msg => {
     insult = insulter.Insult()
 
     // if (activationWords.some(word => msg.content.toLowerCase().includes(word))){
-    if (msg.content.toLowerCase().includes("!help")){
+    if (msg.content.startsWith("!help")){
         msg.channel.send("To get help: !help \n" +
                          "To generate an insult for yourself: !insult \n" +
                          "To insult someone else: !insult @personsName \n" +
@@ -33,10 +33,10 @@ botClient.on("message", msg => {
                          "If you post a negative message (measured using a sentient analysis tool) it will give you a compliment\n"+
                          "(Sentient analysis categorises the message between negative, neutral and positive")
 
-    } else if (msg.content.toLowerCase().includes("!compliment")) { 
+    } else if (msg.content.startsWith("!compliment")) { 
         generateReply(compliment, msg)
 
-    }  else if (msg.content.toLowerCase().includes("!insult")) { 
+    }  else if (msg.content.startsWith("!insult")) { 
         generateReply(insult, msg)
         
     // if message is a negative message compliment them - if its a happy/neutral message leave it alone
