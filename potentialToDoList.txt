@@ -4,7 +4,9 @@ TO DO LIST:
         compliment someone else 
         compliments someone without consent because they were upset
 * add database of new compliments 
-* maybe include an insult section as well
+* maybe include an insult section as well - but only acts to insult x
+
+*maybe add minigame?
       eg !playComplimentGame, pick out of 3 (2 are insults, one is a compliment)
       or two people make compliments and check who has the better stronger compliment (more positive based on the sentitnent analysis?)
 

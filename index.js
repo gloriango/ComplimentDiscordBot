@@ -37,6 +37,7 @@ botClient.on("message", msg => {
         
     // if message is a negative message compliment them
     // if its a happy/neutral message leave it alone
+    // TO DO: need to make it have an on or off mode since it can be really spam-y or annoying
     } else {
 
         intensity = vader.SentimentIntensityAnalyzer.polarity_scores(msg.content);
