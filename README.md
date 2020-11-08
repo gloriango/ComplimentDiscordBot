@@ -1,5 +1,6 @@
 # ComplimentDiscordBot
 A bot for discord which compliments people
+(and also for now insults people)
 
 steps on how i did it ->
 1. put token into env file (make sure its in git ignore)
@@ -9,15 +10,11 @@ steps on how i did it ->
 to get compliments: npm install grantcodes/complimenter
 
 
-For now this will automatically send a compliment if you type !compliment
-    if someone is mentioned, it will compliment that person and say that the typer complimeneted the mentioned person
-    eg me: !compliment @you
-    bot: @me wants to tell @you "compliment"
-
-    if no one is mentioned, it will compliment the author of the message
-
-    if the message is a negative message (as measured by vader.SentimentIntensityAnalyzer) it will 
-    give the user a message - without consent 
-    *NOTE* sentient analysis is analyinsg text and categorising it as "bad, neutral or good" 
-
-
+commands
+To get help: !help
+To generate an insult for yourself: !insult
+To insult someone else: !insult @personsName
+To generate a compliment for yourself: !compliment
+To compliment someone else: !compliment @personsName
+If you post a negative message (measured using a sentient analysis tool) it will give you a compliment
+(Sentient analysis categorieses the message betwen negative, neutral and positive)
