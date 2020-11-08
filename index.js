@@ -25,7 +25,13 @@ botClient.on("message", msg => {
 
     // if (activationWords.some(word => msg.content.toLowerCase().includes(word))){
     if (msg.content.toLowerCase().includes("!help")){
-        msg.channel.send("To generate a compliment for yourself: !compliment \n To compliment someone else: !compliment @personsName \n To generate an insult for yourself: !insult \n To insult someone else: !insult @personsName \n To get help: !help \n if you post a negative message (measured using sentient analysis) it will give you a compliment")
+        msg.channel.send("To get help: !help \n" +
+                         "To generate an insult for yourself: !insult \n" +
+                         "To insult someone else: !insult @personsName \n" +
+                         "To generate a compliment for yourself: !compliment \n" +
+                         "To compliment someone else: !compliment @personsName \n" + 
+                         "If you post a negative message (measured using a sentient analysis tool) it will give you a compliment\n"+
+                         "(Sentient analysis categorieses the message betwen negative, neutral and positive)")
 
     } else if (msg.content.toLowerCase().includes("!compliment")) { 
         generateReply(compliment, msg)
@@ -57,6 +63,5 @@ function generateReply(replyType, msg){
         msg.reply(replyType);
     }
 }
-    
 
 botClient.login(token)
