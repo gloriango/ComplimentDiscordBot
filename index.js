@@ -44,14 +44,22 @@ botClient.on("message", msg => {
     } else {
         intensity = vader.SentimentIntensityAnalyzer.polarity_scores(msg.content);
         // intensity is form {neg: x, neu: y, pos: z, compound: w} where x,y,z are floats that add to 1
-        // and w is the rating overall of the negative
-        // if the message is something negative, slap a compliment to them without consent 
+       
+        // and w is the float -> sums scores for each word in lexicon and noramlises them btween -1 and 1
+        // positive sentiment: compound score >= 0.05
+        // neutral sentiment: (compound score > -0.05) and (compound score < 0.05)
+        // negative sentiment: compound score <= -0.05
+
+        // if the message is something negative, slap them with a compliment
         if (intensity.compound <= -0.05){
             msg.reply("Don't be upset! " + compliment)
         }
     }
 });
 
+// This will generate a reply message when used. 
+// replyType is the type of response (insult or compliment) 
+// msg is the message which activated the function
 function generateReply(replyType, msg){
     // x replyTypes to @mentions
     if (msg.mentions.users.first()) { 
