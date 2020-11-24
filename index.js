@@ -63,9 +63,12 @@ botClient.on("message", msg => {
         randomInsultTypeNumber = Math.floor(Math.random() * Math.floor(2))
         
         if (randomInsultTypeNumber == 0){
+            console.log("NORMAL INSULT")
+
             generateReply(insult, msg)
             
         } else {
+            console.log("SPECIAL INSULT")
             if (msg.mentions.users.first()) { 
                 otherPerson = msg.mentions.users.first().id
                 specialInsult = getLinkContent(evilInsult).then(response=> {
