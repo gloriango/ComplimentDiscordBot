@@ -8,12 +8,35 @@ const vader = require('vader-sentiment');
 const botClient = new Discord.Client();
 
 const token = process.env.TOKEN
-
+const fetch = require("node-fetch");
 botClient.on('ready', () => {
     console.log("This bot is now online!");
 });
 
 // const activationWords =  ["!compliment" ]; 
+
+// var evilInsult = "https://evilinsult.com/generate_insult.php?lang=en&type=plaintext"
+var evilInsult = "https://evilinsult.com/generate_insult.php?lang=en&type=json"
+
+
+const getLinkContent = async (link) => {
+    const response = await fetch(link, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .catch(() => {
+        return ""
+      })
+        .then(data => {return data.insult})
+
+      .catch(() => {
+        return ""
+      })
+
+      return response
+  }
+
+
 
 botClient.on("message", msg => {
     if (msg.author.bot){
@@ -36,8 +59,25 @@ botClient.on("message", msg => {
     } else if (msg.content.startsWith("!compliment")) { 
         generateReply(compliment, msg)
 
-    }  else if (msg.content.startsWith("!insult")) { 
-        generateReply(insult, msg)
+    }  else if (msg.content.startsWith("!insult")) {
+        randomInsultTypeNumber = Math.floor(Math.random() * Math.floor(2))
+        
+        if (randomInsultTypeNumber == 0){
+            generateReply(insult, msg)
+            
+        } else {
+            if (msg.mentions.users.first()) { 
+                otherPerson = msg.mentions.users.first().id
+                specialInsult = getLinkContent(evilInsult).then(response=> {
+                    msg.reply("wants to tell <@"+ otherPerson + "> '" + response + "'")
+                })
+            } 
+            else {
+                specialInsult = getLinkContent(evilInsult).then(response=> {
+                    msg.reply(response)
+                })
+            }
+        }
         
     // if message is a negative message compliment them - if its a happy/neutral message leave it alone
     // TO DO: need to make it have an on or off mode since it can be really spam-y or annoying
