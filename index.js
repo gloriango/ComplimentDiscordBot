@@ -18,7 +18,6 @@ botClient.on('ready', () => {
 // var evilInsult = "https://evilinsult.com/generate_insult.php?lang=en&type=plaintext"
 var evilInsult = "https://evilinsult.com/generate_insult.php?lang=en&type=json"
 
-
 const getLinkContent = async (link) => {
     const response = await fetch(link, {
       method: 'GET',
@@ -35,7 +34,6 @@ const getLinkContent = async (link) => {
 
       return response
   }
-
 
 
 botClient.on("message", msg => {
@@ -63,12 +61,9 @@ botClient.on("message", msg => {
         randomInsultTypeNumber = Math.floor(Math.random() * Math.floor(2))
         
         if (randomInsultTypeNumber == 0){
-            console.log("NORMAL INSULT")
-
             generateReply(insult, msg)
             
         } else {
-            console.log("SPECIAL INSULT")
             if (msg.mentions.users.first()) { 
                 otherPerson = msg.mentions.users.first().id
                 specialInsult = getLinkContent(evilInsult).then(response=> {
