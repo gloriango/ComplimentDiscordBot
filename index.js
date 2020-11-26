@@ -51,6 +51,8 @@ botClient.on("message", msg => {
                          "To insult someone else: !insult @personsName \n" +
                          "To generate a compliment for yourself: !compliment \n" +
                          "To compliment someone else: !compliment @personsName \n" + 
+                         "To send a heart to yourself: !heart \n" +
+                         "To send hearts to someone else: !heart @personsName \n" +
                          "If you post a negative message (measured using a sentient analysis tool) it will give you a compliment\n"+
                          "(Sentient analysis categorises the message between negative, neutral and positive")
 
