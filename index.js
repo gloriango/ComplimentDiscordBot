@@ -77,9 +77,24 @@ botClient.on("message", msg => {
             }
         }
         
+
+    } else if (msg.content.startsWith("!heart")) {
+
+        if (msg.mentions.users.first()) { 
+            otherPerson = msg.mentions.users.first().id   
+            msg.reply("❤️ <@"+otherPerson + "> \n" + makeHeart(15));
+
+            
+        } 
+        else {
+            msg.reply("I love you ❤️\n " + makeHeart(15))
+        }
+
+    }   
+    
     // if message is a negative message compliment them - if its a happy/neutral message leave it alone
     // TO DO: need to make it have an on or off mode since it can be really spam-y or annoying
-    } else {
+    else {
         intensity = vader.SentimentIntensityAnalyzer.polarity_scores(msg.content);
         // intensity is form {neg: x, neu: y, pos: z, compound: w} where x,y,z are floats that add to 1
        
@@ -109,5 +124,53 @@ function generateReply(replyType, msg){
         msg.reply(replyType);
     }
 }
+
+function makeHeart (size){
+    // making the top part
+    string = "\n"
+    // symbol = "❤️"   the emoji is too fat:(
+    symbol = ".."
+    spacing = "  "
+    for (a = (size/2); a < size + 1; a += 2){
+        // making the space before the first peak
+        for (firstSpace = 1; firstSpace < size - a; firstSpace +=2 ){
+            string += spacing
+        }
+        // making the first peak
+        for (firstPeak = 1; firstPeak< a+1; firstPeak +=1){
+            string +=symbol
+        }
+        // space between peak
+        for (space =1; space <size-a+1;space +=1){
+            string += spacing
+
+        }
+
+        // second peak
+        for (secondPeak = 1; secondPeak<a; secondPeak +=1){
+            string += symbol
+        }
+        string += "\n"
+    }
+
+    // making the bottom half
+    for (bottom = size; bottom >= -1; bottom = bottom - 2){
+        // space before triangle 
+        for (spaceBefore = bottom; spaceBefore < size; spaceBefore += 1){
+            string += spacing 
+        }
+
+        for (triangleBase = 1; triangleBase <= (bottom*2+1);triangleBase +=1 ){
+            string +=  symbol
+        }
+        string += "\n"
+    }
+    return string
+}
+
+
+
+
+
 
 botClient.login(token)
