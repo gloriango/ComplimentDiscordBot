@@ -13,6 +13,25 @@ botClient.on('ready', () => {
     console.log("This bot is now online!");
 });
 
+
+var loveMessages = ["I love you ❤️\n "
+                    , "I have a present for you "
+                    , "Here is a present! "]
+
+
+var wantsToTellLoveMessages = [" ❤️ ",
+                               "Love you! "]
+
+
+var wantsToTellComplimentsInsults = ["you told me to tell ",
+                                    "wants to tell "]
+
+
+
+var dontBeUpset = ["Don't be sad! ",
+                  "Turn that frown upside down! "]
+
+
 // const activationWords =  ["!compliment" ]; 
 
 // var evilInsult = "https://evilinsult.com/generate_insult.php?lang=en&type=plaintext"
@@ -65,11 +84,15 @@ botClient.on("message", msg => {
         if (randomInsultTypeNumber == 0){
             generateReply(insult, msg)
             
-        } else {
+        } else {            
+
             if (msg.mentions.users.first()) { 
-                otherPerson = msg.mentions.users.first().id
+                otherPerson = msg.mentions.users.first().id     
+                wantsToTellComplimentInsult = getRandomElement(wantsToTellComplimentsInsults)
+
                 specialInsult = getLinkContent(evilInsult).then(response=> {
-                    msg.reply("wants to tell <@"+ otherPerson + "> '" + response + "'")
+                    msg.reply(wantsToTellComplimentInsult + "<@"+ otherPerson + "> '" + response + "'")
+                    
                 })
             } 
             else {
@@ -84,12 +107,15 @@ botClient.on("message", msg => {
 
         if (msg.mentions.users.first()) { 
             otherPerson = msg.mentions.users.first().id   
-            msg.reply("❤️ <@"+otherPerson + "> \n" + makeHeart(15));
 
-            
+            loveMessageConnector = getRandomElement(wantsToTellLoveMessages)
+
+            msg.reply(loveMessageConnector +"<@"+otherPerson + "> \n" + makeHeart(15));
+
         } 
         else {
-            msg.reply("I love you ❤️\n " + makeHeart(15))
+            loveMessage = getRandomElement(loveMessages)
+            msg.reply(loveMessage + makeHeart(15))
         }
 
     }   
@@ -107,7 +133,9 @@ botClient.on("message", msg => {
 
         // if the message is something negative, slap them with a compliment
         if (intensity.compound <= -0.05){
-            msg.reply("Don't be upset! " + compliment)
+            dontBeUpsetMessage = getRandomElement(dontBeUpset)
+
+            msg.reply(dontBeUpsetMessage + compliment)
         }
     }
 });
@@ -119,7 +147,9 @@ function generateReply(replyType, msg){
     // x replyTypes to @mentions
     if (msg.mentions.users.first()) { 
         otherPerson = msg.mentions.users.first().id
-        msg.reply("wants to tell <@"+otherPerson + "> '" + replyType + "'");
+
+        wantsToTellComplimentInsult = getRandomElement(wantsToTellComplimentsInsults)
+        msg.reply(wantsToTellComplimentInsult + "<@" + otherPerson + "> '" + replyType + "'");
         } 
     // replyType to the person who typed the activation word
     else {
@@ -170,6 +200,12 @@ function makeHeart (size){
     return string
 }
 
+
+function getRandomElement (array){
+    let arrayLength = array.length
+    let index = Math.floor(Math.random() * Math.floor(arrayLength))
+    return array[index] 
+}
 
 
 
