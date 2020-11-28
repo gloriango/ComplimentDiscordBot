@@ -16,7 +16,7 @@ botClient.on('ready', () => {
 var wantsToTellMessages = ["you told me to tell ",
                                     "wants to tell "]
 
-var loveMessages = ["I love you ❤️\n "
+var loveMessages = ["I love you ❤️ "
                     , "I have a present for you "
                     , "Here is a present! "]
 
@@ -156,7 +156,6 @@ function generateReply(replyType, msg){
 function makeHeart (size){
     // making the top part
     string = "\n"
-    // symbol = "❤️"   the emoji is too fat:(
     symbol = ".."
     spacing = "  "
     for (a = (size/2); a < size + 1; a += 2){
