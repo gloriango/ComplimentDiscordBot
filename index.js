@@ -25,7 +25,8 @@ var wantsToTellLoveMessages = [" ❤️ ",
 
 var dontBeUpset = ["Don't be sad! "
                   ,"Turn that frown upside down! "
-                 ,"HEYHEY GUESS WHAT "]
+                 ,"HEYHEY GUESS WHAT "
+                , "HEYYYY "]
 
 //****************************************************************************//
 var evilInsult = "https://evilinsult.com/generate_insult.php?lang=en&type=json"
