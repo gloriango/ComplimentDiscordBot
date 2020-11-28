@@ -1,6 +1,5 @@
 require('dotenv').config();
 const Discord = require('discord.js');
-
 var complimenter = require("complimenter");
 var insulter = require("insult");
 const vader = require('vader-sentiment');
@@ -13,6 +12,9 @@ botClient.on('ready', () => {
     console.log("This bot is now online!");
 });
 
+//****************************************************************************//
+var wantsToTellMessages = ["you told me to tell ",
+                                    "wants to tell "]
 
 var loveMessages = ["I love you ❤️\n "
                     , "I have a present for you "
@@ -22,19 +24,10 @@ var loveMessages = ["I love you ❤️\n "
 var wantsToTellLoveMessages = [" ❤️ ",
                                "Love you! "]
 
-
-var wantsToTellComplimentsInsults = ["you told me to tell ",
-                                    "wants to tell "]
-
-
-
 var dontBeUpset = ["Don't be sad! ",
                   "Turn that frown upside down! "]
 
-
-// const activationWords =  ["!compliment" ]; 
-
-// var evilInsult = "https://evilinsult.com/generate_insult.php?lang=en&type=plaintext"
+//****************************************************************************//
 var evilInsult = "https://evilinsult.com/generate_insult.php?lang=en&type=json"
 
 const getLinkContent = async (link) => {
@@ -54,6 +47,7 @@ const getLinkContent = async (link) => {
       return response
   }
 
+//****************************************************************************//
 
 botClient.on("message", msg => {
     if (msg.author.bot){
@@ -63,7 +57,6 @@ botClient.on("message", msg => {
     compliment = complimenter()
     insult = insulter.Insult()
 
-    // if (activationWords.some(word => msg.content.toLowerCase().includes(word))){
     if (msg.content.startsWith("!help")){
         msg.channel.send("To get help: !help \n" +
                          "To generate an insult for yourself: !insult \n" +
@@ -101,7 +94,6 @@ botClient.on("message", msg => {
                 })
             }
         }
-        
 
     } else if (msg.content.startsWith("!heart")) {
 
@@ -140,6 +132,8 @@ botClient.on("message", msg => {
     }
 });
 
+//****************************************************************************//
+
 // This will generate a reply message when used. 
 // replyType is the type of response (insult or compliment) 
 // msg is the message which activated the function
@@ -148,14 +142,16 @@ function generateReply(replyType, msg){
     if (msg.mentions.users.first()) { 
         otherPerson = msg.mentions.users.first().id
 
-        wantsToTellComplimentInsult = getRandomElement(wantsToTellComplimentsInsults)
-        msg.reply(wantsToTellComplimentInsult + "<@" + otherPerson + "> '" + replyType + "'");
+        wantsToTellMessage = getRandomElement(wantsToTellMessages)
+        msg.reply(wantsToTellMessage + "<@" + otherPerson + "> '" + replyType + "'");
         } 
     // replyType to the person who typed the activation word
     else {
         msg.reply(replyType);
     }
 }
+
+//****************************************************************************//
 
 function makeHeart (size){
     // making the top part
@@ -200,6 +196,7 @@ function makeHeart (size){
     return string
 }
 
+//****************************************************************************//
 
 function getRandomElement (array){
     let arrayLength = array.length
@@ -207,8 +204,6 @@ function getRandomElement (array){
     return array[index] 
 }
 
-
-
-
+//****************************************************************************//
 
 botClient.login(token)
