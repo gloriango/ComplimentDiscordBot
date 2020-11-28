@@ -20,12 +20,12 @@ var loveMessages = ["I love you ❤️ "
                     , "I have a present for you "
                     , "Here is a present! "]
 
-
 var wantsToTellLoveMessages = [" ❤️ ",
                                "Love you! "]
 
-var dontBeUpset = ["Don't be sad! ",
-                  "Turn that frown upside down! "]
+var dontBeUpset = ["Don't be sad! "
+                  ,"Turn that frown upside down! "
+                 ,"HEYHEY GUESS WHAT "]
 
 //****************************************************************************//
 var evilInsult = "https://evilinsult.com/generate_insult.php?lang=en&type=json"
@@ -71,7 +71,7 @@ botClient.on("message", msg => {
     } else if (msg.content.startsWith("!compliment")) { 
         generateReply(compliment, msg)
 
-    }  else if (msg.content.startsWith("!insult")) {
+    } else if (msg.content.startsWith("!insult")) {
         randomInsultTypeNumber = Math.floor(Math.random() * Math.floor(2))
         
         if (randomInsultTypeNumber == 0){
@@ -82,26 +82,22 @@ botClient.on("message", msg => {
             if (msg.mentions.users.first()) { 
                 otherPerson = msg.mentions.users.first().id     
                 wantsToTellComplimentInsult = getRandomElement(wantsToTellComplimentsInsults)
-
                 specialInsult = getLinkContent(evilInsult).then(response=> {
                     msg.reply(wantsToTellComplimentInsult + "<@"+ otherPerson + "> '" + response + "'")
                     
                 })
-            } 
-            else {
-                specialInsult = getLinkContent(evilInsult).then(response=> {
-                    msg.reply(response)
-                })
-            }
+        } else {
+            specialInsult = getLinkContent(evilInsult).then(response=> {
+                msg.reply(response)
+            })
+        }
         }
 
     } else if (msg.content.startsWith("!heart")) {
 
         if (msg.mentions.users.first()) { 
             otherPerson = msg.mentions.users.first().id   
-
             loveMessageConnector = getRandomElement(wantsToTellLoveMessages)
-
             msg.reply(loveMessageConnector +"<@"+otherPerson + "> \n" + makeHeart(15));
 
         } 
@@ -109,7 +105,6 @@ botClient.on("message", msg => {
             loveMessage = getRandomElement(loveMessages)
             msg.reply(loveMessage + makeHeart(15))
         }
-
     }   
     
     // if message is a negative message compliment them - if its a happy/neutral message leave it alone
@@ -117,11 +112,10 @@ botClient.on("message", msg => {
     else {
         intensity = vader.SentimentIntensityAnalyzer.polarity_scores(msg.content);
         // intensity is form {neg: x, neu: y, pos: z, compound: w} where x,y,z are floats that add to 1
-       
-        // and w is the float -> sums scores for each word in lexicon and noramlises them btween -1 and 1
-        // positive sentiment: compound score >= 0.05
-        // neutral sentiment: (compound score > -0.05) and (compound score < 0.05)
-        // negative sentiment: compound score <= -0.05
+        // w is float -> sums scores for each word in lexicon and noramlises them btween -1 and 1
+        // + nsentiment: compound score >= 0.05
+        // 0 sentiment: (compound score > -0.05) and (compound score < 0.05)
+        // - sentiment: compound score <= -0.05
 
         // if the message is something negative, slap them with a compliment
         if (intensity.compound <= -0.05){
@@ -141,9 +135,9 @@ function generateReply(replyType, msg){
     // x replyTypes to @mentions
     if (msg.mentions.users.first()) { 
         otherPerson = msg.mentions.users.first().id
+        wantsToTellConnector = getRandomElement(wantsToTellMessages)
 
-        wantsToTellMessage = getRandomElement(wantsToTellMessages)
-        msg.reply(wantsToTellMessage + "<@" + otherPerson + "> '" + replyType + "'");
+        msg.reply(wantsToTellConnector + "<@" + otherPerson + "> '" + replyType + "'");
         } 
     // replyType to the person who typed the activation word
     else {
