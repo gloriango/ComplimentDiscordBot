@@ -87,11 +87,11 @@ botClient.on("message", msg => {
                     msg.reply(wantsToTellComplimentInsult + "<@"+ otherPerson + "> '" + response + "'")
                     
                 })
-        } else {
-            specialInsult = getLinkContent(evilInsult).then(response=> {
-                msg.reply(response)
-            })
-        }
+            } else {
+                specialInsult = getLinkContent(evilInsult).then(response=> {
+                  msg.reply(response)
+                })
+            }
         }
 
     } else if (msg.content.startsWith("!heart")) {
