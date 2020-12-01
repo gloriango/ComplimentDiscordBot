@@ -3,10 +3,10 @@ TO DO LIST:
         compliment the writer
         compliment someone else 
         compliments someone without consent because they were upset
+        
 * add database of new compliments 
 
 *maybe add minigame?
       eg !playComplimentGame, pick out of 3 (2 are insults, one is a compliment)
-      or two people make compliments and check who has the better stronger compliment (more positive based on the sentitnent analysis?)
 
 * add some sort of "on off" toggle for the without consent part for the compliment bot (can be annoying for other people)
