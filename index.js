@@ -110,6 +110,8 @@ botClient.on("message", msg => {
     
     // if message is a negative message compliment them - if its a happy/neutral message leave it alone
     // TO DO: need to make it have an on or off mode since it can be really spam-y or annoying
+    // TO DO: make it automatically clean the message from connecting words like 
+    // "it" "the" etc, so that when I use AWS it doesn't risk going over the word limit 
     else {
         intensity = vader.SentimentIntensityAnalyzer.polarity_scores(msg.content);
         // intensity is form {neg: x, neu: y, pos: z, compound: w} where x,y,z are floats that add to 1
@@ -155,17 +157,16 @@ function makeHeart (size){
     spacing = "  "
     for (a = (size/2); a < size + 1; a += 2){
         // making the space before the first peak
-        for (firstSpace = 1; firstSpace < size - a; firstSpace +=2 ){
+        for (firstSpace = 1; firstSpace < size - a; firstSpace += 2){
             string += spacing
         }
         // making the first peak
-        for (firstPeak = 1; firstPeak< a+1; firstPeak +=1){
+        for (firstPeak = 1; firstPeak< a+1; firstPeak += 1){
             string +=symbol
         }
         // space between peak
-        for (space =1; space <size-a+1;space +=1){
+        for (space = 1; space < size-a+1; space +=1){
             string += spacing
-
         }
 
         // second peak
@@ -182,7 +183,7 @@ function makeHeart (size){
             string += spacing 
         }
 
-        for (triangleBase = 1; triangleBase <= (bottom*2+1);triangleBase +=1 ){
+        for (triangleBase = 1; triangleBase <= (bottom*2+1); triangleBase += 1 ){
             string +=  symbol
         }
         string += "\n"
