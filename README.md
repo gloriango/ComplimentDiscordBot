@@ -15,13 +15,13 @@ Commands
 npm start to run the discord bot (after adding it to the server)
 
 make sure to 
-1. put token into env file (make sure its in git ignore)
+1. Put token into env file (make sure its in git ignore)
 2. npm install
-    "complimenter": "github:grantcodes/complimenter",
-    "discord.js": "^12.3.1",
-    "dotenv": "^8.2.0",
-    "insult": "0.0.3",
-    "node-fetch": "^2.6.1",
-    "vader-sentiment": "^1.1.3"
+   * "complimenter": "github:grantcodes/complimenter",
+   * "discord.js": "^12.3.1",
+   * "dotenv": "^8.2.0",
+   * "insult": "0.0.3",
+   * "node-fetch": "^2.6.1",
+   * "vader-sentiment": "^1.1.3"
   
 3. put require('dotenv').config(); at the top of the file which uses it 
