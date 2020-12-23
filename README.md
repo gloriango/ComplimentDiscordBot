@@ -1,6 +1,6 @@
 # ComplimentDiscordBot
 A bot for discord which compliments people
-(and also for now insults people)
+(and also insults people and send hearts)
 
 commands
 
