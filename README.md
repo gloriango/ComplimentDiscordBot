@@ -24,4 +24,3 @@ make sure to
    * "node-fetch": "^2.6.1",
    * "vader-sentiment": "^1.1.3"
   
-3. put require('dotenv').config(); at the top of the file which uses it 
