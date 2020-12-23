@@ -3,6 +3,7 @@ A bot for discord which compliments people
 (also insults people and send hearts)
 
 <h2> Commands </h2>
+
 * To get help: !help 
 * To generate an insult for yourself: !insult
 * To insult someone else: !insult @personsName
