@@ -31,6 +31,7 @@ var dontBeUpset = ["Don't be sad! "
 //****************************************************************************//
 var evilInsult = "https://evilinsult.com/generate_insult.php?lang=en&type=json"
 
+// gets the content from a link and returns the response 
 const getLinkContent = async (link) => {
     const response = await fetch(link, {
       method: 'GET',
@@ -50,6 +51,9 @@ const getLinkContent = async (link) => {
 
 //****************************************************************************//
 
+// when the bot is online, if someone sends a message (msg) it will give the 
+// appropriate feedback based on the message  (refer to the messages listed down
+//  below)
 botClient.on("message", msg => {
     if (msg.author.bot){
         return;
@@ -151,6 +155,7 @@ function generateReply(replyType, msg){
 //****************************************************************************//
 // taken from https://www.geeksforgeeks.org/printing-heart-pattern-c/ and 
 // modified to work for discord
+// size is the maximum length of the height (is a number)
 function makeHeart (size){
     // making the top part
     string = "\n"
@@ -178,14 +183,14 @@ function makeHeart (size){
     }
 
     // making the bottom half
-    for (bot = size; bot >= -1; bot -= 2){
+    for (bottom = size; bottom >= -1; bottom -= 2){
         // space before triangle 
-        for (spaceBefore = bot; spaceBefore < size; spaceBefore += 1){
+        for (space = bottom; space < size; space += 1){
             string += spacing 
         }
 
         // triangle parts
-        for (base = 1; base <= (bot * 2 + 1); base += 1){
+        for (base = 1; base <= (bottom * 2 + 1); base += 1){
             string +=  symbol
         }
         string += "\n"
@@ -194,7 +199,7 @@ function makeHeart (size){
 }
 
 //****************************************************************************//
-
+// gets a random element from an array input
 function getRandomElement (array){
     let arrayLength = array.length
     let index = Math.floor(Math.random() * Math.floor(arrayLength))
