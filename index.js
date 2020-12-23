@@ -149,12 +149,13 @@ function generateReply(replyType, msg){
 }
 
 //****************************************************************************//
-
+// taken from https://www.geeksforgeeks.org/printing-heart-pattern-c/ and 
+// modified to work for discord
 function makeHeart (size){
     // making the top part
     string = "\n"
-    symbol = ".."
-    spacing = "  "
+    symbol = "..."
+    spacing = "   "
     for (a = (size/2); a < size + 1; a += 2){
         // making the space before the first peak
         for (firstSpace = 1; firstSpace < size - a; firstSpace += 2){
@@ -170,20 +171,21 @@ function makeHeart (size){
         }
 
         // second peak
-        for (secondPeak = 1; secondPeak<a; secondPeak +=1){
+        for (secondPeak = 1; secondPeak < a; secondPeak += 1){
             string += symbol
         }
         string += "\n"
     }
 
     // making the bottom half
-    for (bottom = size; bottom >= -1; bottom = bottom - 2){
+    for (bot = size; bot >= -1; bot -= 2){
         // space before triangle 
-        for (spaceBefore = bottom; spaceBefore < size; spaceBefore += 1){
+        for (spaceBefore = bot; spaceBefore < size; spaceBefore += 1){
             string += spacing 
         }
 
-        for (triangleBase = 1; triangleBase <= (bottom*2+1); triangleBase += 1 ){
+        // triangle parts
+        for (base = 1; base <= (bot * 2 + 1); base += 1){
             string +=  symbol
         }
         string += "\n"
