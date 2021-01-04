@@ -108,7 +108,8 @@ botClient.on("message", msg => {
         } 
         else {
             loveMessage = getRandomElement(loveMessages)
-            msg.reply(loveMessage + makeHeart(15))
+            // needs this spacing for discord (looks different in console)
+            msg.reply(loveMessage + makeHeart(15 , "...", "   "))
         }
     }   
     
@@ -154,13 +155,11 @@ function generateReply(replyType, msg){
 
 //****************************************************************************//
 // taken from https://www.geeksforgeeks.org/printing-heart-pattern-c/ and 
-// modified to work for discord
+// modified to make the shape look the way I want it to look
 // size is the maximum length of the height (is a number)
-function makeHeart (size){
+function makeHeart (size, symbol, spacing){
     // making the top part
     string = "\n"
-    symbol = "..."
-    spacing = "   "
     for (a = (size/2); a < size + 1; a += 2){
         // making the space before the first peak
         for (firstSpace = 1; firstSpace < size - a; firstSpace += 2){
