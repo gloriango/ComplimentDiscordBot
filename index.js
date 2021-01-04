@@ -103,7 +103,8 @@ botClient.on("message", msg => {
         if (msg.mentions.users.first()) { 
             otherPerson = msg.mentions.users.first().id   
             loveMessageConnector = getRandomElement(wantsToTellLoveMessages)
-            msg.reply(loveMessageConnector +"<@"+otherPerson + "> \n" + makeHeart(15));
+            msg.reply(loveMessageConnector +"<@"+otherPerson + 
+                        "> \n" + makeHeart(15,"...", "   "));
 
         } 
         else {
@@ -114,9 +115,6 @@ botClient.on("message", msg => {
     }   
     
     // if message is a negative message compliment them - if its a happy/neutral message leave it alone
-    // TO DO: need to make it have an on or off mode since it can be really spam-y or annoying
-    // TO DO: make it automatically clean the message from connecting words like 
-    // "it" "the" etc, so that when I use AWS it doesn't risk going over the word limit 
     else {
         intensity = vader.SentimentIntensityAnalyzer.polarity_scores(msg.content);
         // intensity is form {neg: x, neu: y, pos: z, compound: w} where x,y,z are floats that add to 1
