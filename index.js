@@ -86,7 +86,7 @@ botClient.on("message", msg => {
 
             if (msg.mentions.users.first()) { 
                 otherPerson = msg.mentions.users.first().id     
-                wantsToTellComplimentInsult = getRandomElement(wantsToTellComplimentsInsults)
+                wantsToTellComplimentInsult = getRandomElement(wantsToTellMessages)
                 specialInsult = getLinkContent(evilInsult).then(response=> {
                     msg.reply(wantsToTellComplimentInsult + "<@"+ otherPerson + "> '" + response + "'")
                     
