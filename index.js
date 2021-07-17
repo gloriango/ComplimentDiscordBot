@@ -71,7 +71,7 @@ botClient.on("message", msg => {
                          "To send a heart to yourself: !heart \n" +
                          "To send hearts to someone else: !heart @personsName \n" +
                          "If you post a negative message (measured using a sentient analysis tool) it will give you a compliment\n"+
-                         "(Sentient analysis categorises the message between negative, neutral and positive")
+                         "(Sentient analysis categorises the message between negative, neutral and positive)")
 
     } else if (msg.content.startsWith("!compliment")) { 
         generateReply(compliment, msg)
