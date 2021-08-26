@@ -210,23 +210,27 @@ function getRandomElement (array){
 //****************************************************************************//
 
 // fires from Monday to Friday, every hour from 8 am to 17       00 00 08-17 * * 1-5
-// every two days at 11pm 0      23     */2       *       * 
-let scheduledMessage = new cron.CronJob('0 21 */2 * * ', () => {
+// every two days at 11pm 0 23 */2 * * 
+let scheduledMessage = new cron.CronJob('0 21 */2 * *', () => {
     
-    botClient.guilds.cache.forEach((guild) => { //for each guild server the bot is in
-        guild.channels.cache.forEach((channel) => { // for each channel in the server 
+    botClient.guilds.cache.forEach((guild) => { //for each guild the bot is in
+        guild.channels.cache.forEach((channel) => {
+    
             if(channel.type == "text") {
                 if(channel.permissionsFor(guild.me).has("SEND_MESSAGES")) {
                     compliment = complimenter()
-                    channel.send("@everyone " + compliment).catch(err => console.log(err))
+                    channel.send("@everyone " + compliment).catch(err => console.log("channel un-touchable"))
+
                 }
             }
+
+
         }) 
     })
+   
 });
   
-
-// start schedulling the messages
+//starting to use the daily compliments
 scheduledMessage.start();
 
 
