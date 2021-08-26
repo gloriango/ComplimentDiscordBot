@@ -8,6 +8,10 @@ const botClient = new Discord.Client();
 
 const token = process.env.TOKEN
 const fetch = require("node-fetch");
+
+const cron = require('cron');
+
+
 botClient.on('ready', () => {
     console.log("This bot is now online!");
 });
@@ -205,4 +209,27 @@ function getRandomElement (array){
 
 //****************************************************************************//
 
+// fires from Monday to Friday, every hour from 8 am to 17       00 00 08-17 * * 1-5
+// every two days at 11pm 0      23     */2       *       * 
+let scheduledMessage = new cron.CronJob('0 21 */2 * * ', () => {
+    
+    botClient.guilds.cache.forEach((guild) => { //for each guild server the bot is in
+        guild.channels.cache.forEach((channel) => { // for each channel in the server 
+            if(channel.type == "text") {
+                if(channel.permissionsFor(guild.me).has("SEND_MESSAGES")) {
+                    compliment = complimenter()
+                    channel.send("@everyone " + compliment).catch(err => console.log(err))
+                }
+            }
+        }) 
+    })
+});
+  
+
+// start schedulling the messages
+scheduledMessage.start();
+
+
 botClient.login(token)
+
+
