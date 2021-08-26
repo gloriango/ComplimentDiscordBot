@@ -213,8 +213,8 @@ function getRandomElement (array){
 // every two days at 11pm 0 23 */2 * * 
 let scheduledMessage = new cron.CronJob('0 21 */2 * *', () => {
     
-    botClient.guilds.cache.forEach((guild) => { //for each guild the bot is in
-        guild.channels.cache.forEach((channel) => {
+    botClient.guilds.cache.forEach((guild) => { //for each guild server the bot is in
+        guild.channels.cache.forEach((channel) => { // for each channel in server
     
             if(channel.type == "text") {
                 if(channel.permissionsFor(guild.me).has("SEND_MESSAGES")) {
