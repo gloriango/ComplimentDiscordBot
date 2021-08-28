@@ -4,6 +4,7 @@ A bot for discord which compliments people
 
 <h2> Commands </h2>
 
+* This bot will compliment you every two days (just to make sure you're ok hehe)
 * To get help: !help 
 * To generate an insult for yourself: !insult
 * To insult someone else: !insult @personsName
@@ -17,12 +18,7 @@ A bot for discord which compliments people
 Make sure to 
 
 1. Put token into env file (make sure its in git ignore)
-2. ``` npm install ```
-   * "complimenter": "github:grantcodes/complimenter",
-   * "discord.js": "^12.3.1",
-   * "dotenv": "^8.2.0",
-   * "insult": "0.0.3",
-   * "node-fetch": "^2.6.1",
-   * "vader-sentiment": "^1.1.3"
+2. ``` npm install ``` which installs relevant dependancies
+
 3. ```  npm start ``` to run the discord bot (after adding it to the server)
 
