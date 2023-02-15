@@ -20,5 +20,5 @@ Make sure to
 1. Put token into env file (make sure its in git ignore)
 2. ``` npm install ``` which installs relevant dependancies
 
-3. ```  npm start ``` to run the discord bot (after adding it to the server)
+3. ``` npm start ``` to run the discord bot (after adding it to the server)
 
